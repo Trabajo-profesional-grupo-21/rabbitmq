@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  rabbitmq:
+    build:
+      context: .
+      dockerfile: rabbitmq.dockerfile
+    healthcheck:
+      interval: 10s
+      retries: 10
+      test:
+      - CMD
+      - curl
+      - -f
+      - http://localhost:15672
+      timeout: 5s
+    ports:
+    - 15672:15672
+    - 5672:5672
+    networks:
+      - custom_network
+
+networks:
+  custom_network:
+    name: custom_network
+    driver: bridge

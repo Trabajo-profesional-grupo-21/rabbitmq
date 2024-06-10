@@ -14,6 +14,7 @@ services:
       - -f
       - http://localhost:15672
       timeout: 5s
+    container_name: rabbitmq
     ports:
     - 15672:15672
     - 5672:5672
